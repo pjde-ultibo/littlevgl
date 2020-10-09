@@ -1,4 +1,10 @@
 # littlevgl
-Ultibo port of littlevgl
+Ultibo port of lvgl
 
-Just the start
+Have now made it fully programmable via Ultibo
+
+Not all headers have been translated.
+
+Enjoy
+
+
