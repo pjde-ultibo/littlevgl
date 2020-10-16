@@ -150,7 +150,6 @@ const
   LV_GESTURE_DIR_LEFT                       = 2;    // Gesture dir left.
   LV_GESTURE_DIR_RIGHT                      = 3;    // Gesture dir right.
 
-
   LV_INDEV_TYPE_NONE                        = 0;    // Uninitialized state
   LV_INDEV_TYPE_POINTER                     = 1;    // Touch pad, mouse, external button
   LV_INDEV_TYPE_KEYPAD                      = 2;    // Keypad or keyboard
@@ -160,7 +159,6 @@ const
 
   LV_INDEV_STATE_REL                        = 0;
   LV_INDEV_STATE_PR                         = 1;
-
 
   // dragging enumerations
   LV_DRAG_DIR_HOR                           = $1;   // Object can be dragged horizontally.
@@ -182,6 +180,8 @@ const
   LV_THEME_MATERIAL_FLAG_LIGHT              = $02;
   LV_THEME_MATERIAL_FLAG_NO_TRANSITION      = $10;
   LV_THEME_MATERIAL_FLAG_NO_FOCUS           = $20;
+
+  LV_DPI                                    = 130;
 
 // arcs
   LV_ARC_PART_BG                            = 0;
@@ -251,10 +251,36 @@ const
   LV_BORDER_SIDE_INTERNAL                   = $10;
   _LV_BORDER_SIDE_LAST                      = $11;
 
+  LV_LABEL_PART_MAIN                        = 0;
+
+  LV_LABEL_ALIGN_LEFT                       = 0; // Align text to left
+  LV_LABEL_ALIGN_CENTER                     = 1; // Align text to center
+  LV_LABEL_ALIGN_RIGHT                      = 2; // Align text to right
+  LV_LABEL_ALIGN_AUTO                       = 3; // Use LEFT or RIGHT depending on the direction of the text (LTR/RTL)
+
   LV_GRAD_DIR_NONE                          = 0;
   LV_GRAD_DIR_VER                           = 1;
   LV_GRAD_DIR_HOR                           = 2;
   _LV_GRAD_DIR_LAST                         = 3;
+
+   LV_CONT_PART_MAIN                         = LV_OBJ_PART_MAIN;
+//  _LV_CONT_PART_VIRTUAL_LAST                = _LV_OBJ_PART_VIRTUAL_LAST;
+  _LV_CONT_PART_REAL_LAST                   = _LV_OBJ_PART_REAL_LAST;
+
+  LV_PAGE_PART_BG                           = LV_CONT_PART_MAIN;
+//  LV_PAGE_PART_SCROLLBAR                    = _LV_OBJ_PART_VIRTUAL_LAST;
+//  LV_PAGE_PART_EDGE_FLASH                   = LV_PAGE_PART_SCROLLBAR + 1;
+//  _LV_PAGE_PART_VIRTUAL_LAST                = LV_PAGE_PART_EDGE_FLASH + 1;
+
+  LV_PAGE_PART_SCROLLABLE                   = _LV_OBJ_PART_REAL_LAST;
+  _LV_PAGE_PART_REAL_LAST                   = LV_PAGE_PART_SCROLLABLE + 1;
+
+  LV_LIST_PART_BG                           = LV_PAGE_PART_BG; // List background style
+//  LV_LIST_PART_SCROLLBAR                    = LV_PAGE_PART_SCROLLBAR; // List scrollbar style.
+//  LV_LIST_PART_EDGE_FLASH                   = LV_PAGE_PART_EDGE_FLASH; // List edge flash style.
+//  _LV_LIST_PART_VIRTUAL_LAST                = _LV_PAGE_PART_VIRTUAL_LAST,
+  LV_LIST_PART_SCROLLABLE                   = LV_PAGE_PART_SCROLLABLE; // List scrollable area style.
+  _LV_LIST_PART_REAL_LAST                   = _LV_PAGE_PART_REAL_LAST;
 
   // Text decorations (Use 'OR'ed values)
   LV_TEXT_DECOR_NONE                        = $00;
@@ -262,10 +288,122 @@ const
   LV_TEXT_DECOR_STRIKETHROUGH               = $02;
   _LV_TEXT_DECOR_LAST                       = $03;
 
+  LV_LED_BRIGHT_MIN                         = 120;
+  LV_LED_BRIGHT_MAX                         = 255;
+
+  LV_STYLE_STATE_POS                        = 8;
+  LV_STYLE_STATE_MASK                       = $7F00;
+  LV_STYLE_INHERIT_MASK                     = $8000;
+
   LV_STYLE_ID_VALUE                         = $00;   // max 9 pcs
   LV_STYLE_ID_COLOR                         = $09;   // max 3 pcs
   LV_STYLE_ID_OPA                           = $0C;   // max 2 pcs
   LV_STYLE_ID_PTR                           = $0E;   // max 2 pcs
+
+  LV_STYLE_RADIUS                           = $01;
+  LV_STYLE_CLIP_CORNER                      = $02;
+  LV_STYLE_SIZE                             = $03;
+  LV_STYLE_TRANSFORM_WIDTH                  = $04;
+  LV_STYLE_TRANSFORM_HEIGHT                 = $05;
+  LV_STYLE_TRANSFORM_ANGLE                  = $07;
+  LV_STYLE_TRANSFORM_ZOOM                   = $08;
+  LV_STYLE_OPA_SCALE                        = $800C;
+
+  LV_STYLE_PAD_TOP                          = $10;
+  LV_STYLE_PAD_BOTTOM                       = $11;
+  LV_STYLE_PAD_LEFT                         = $12;
+  LV_STYLE_PAD_RIGHT                        = $13;
+  LV_STYLE_PAD_INNER                        = $14;
+  LV_STYLE_MARGIN_TOP                       = $15;
+  LV_STYLE_MARGIN_BOTTOM                    = $16;
+  LV_STYLE_MARGIN_LEFT                      = $17;
+  LV_STYLE_MARGIN_RIGHT                     = $18;
+
+  LV_STYLE_BG_BLEND_MODE                    = $20;
+  LV_STYLE_BG_MAIN_STOP                     = $21;
+  LV_STYLE_BG_GRAD_STOP                     = $22;
+  LV_STYLE_BG_GRAD_DIR                      = $23;
+  LV_STYLE_BG_COLOR                         = $29;
+  LV_STYLE_BG_GRAD_COLOR                    = $2A;
+  LV_STYLE_BG_OPA                           = $2C;
+
+  LV_STYLE_BORDER_WIDTH                     = $30;
+  LV_STYLE_BORDER_SIDE                      = $31;
+  LV_STYLE_BORDER_BLEND_MODE                = $32;
+  LV_STYLE_BORDER_POST                      = $33;
+  LV_STYLE_BORDER_COLOR                     = $39;
+  LV_STYLE_BORDER_OPA                       = $3C;
+
+  LV_STYLE_OUTLINE_WIDTH                    = $40;
+  LV_STYLE_OUTLINE_PAD                      = $41;
+  LV_STYLE_OUTLINE_BLEND_MODE               = $42;
+  LV_STYLE_OUTLINE_COLOR                    = $49;
+  LV_STYLE_OUTLINE_OPA                      = $4C;
+
+  LV_STYLE_SHADOW_WIDTH                     = $50;
+  LV_STYLE_SHADOW_OFS_X                     = $51;
+  LV_STYLE_SHADOW_OFS_Y                     = $52;
+  LV_STYLE_SHADOW_SPREAD                    = $53;
+  LV_STYLE_SHADOW_BLEND_MODE                = $54;
+  LV_STYLE_SHADOW_COLOR                     = $59;
+  LV_STYLE_SHADOW_OPA                       = $5C;
+
+  LV_STYLE_PATTERN_BLEND_MODE               = $60;
+  LV_STYLE_PATTERN_REPEAT                   = $61;
+  LV_STYLE_PATTERN_RECOLOR                  = $69;
+  LV_STYLE_PATTERN_OPA                      = $6C;
+  LV_STYLE_PATTERN_RECOLOR_OPA              = $6D;
+  LV_STYLE_PATTERN_IMAGE                    = $6E;
+
+  LV_STYLE_VALUE_LETTER_SPACE               = $70;
+  LV_STYLE_VALUE_LINE_SPACE                 = $71;
+  LV_STYLE_VALUE_BLEND_MODE                 = $72;
+  LV_STYLE_VALUE_OFS_X                      = $73;
+  LV_STYLE_VALUE_OFS_Y                      = $74;
+  LV_STYLE_VALUE_ALIGN                      = $75;
+  LV_STYLE_VALUE_COLOR                      = $79;
+  LV_STYLE_VALUE_OPA                        = $7C;
+  LV_STYLE_VALUE_FONT                       = $7E;
+  LV_STYLE_VALUE_STR                        = $7F;
+
+  LV_STYLE_TEXT_LETTER_SPACE                = $8080;
+  LV_STYLE_TEXT_LINE_SPACE                  = $8081;
+  LV_STYLE_TEXT_DECOR                       = $8082;
+  LV_STYLE_TEXT_BLEND_MODE                  = $8083;
+  LV_STYLE_TEXT_COLOR                       = $8089;
+  LV_STYLE_TEXT_SEL_COLOR                   = $808A;
+  LV_STYLE_TEXT_OPA                         = $808C;
+  LV_STYLE_TEXT_FONT                        = $808E;
+
+  LV_STYLE_LINE_WIDTH                       = $90;
+  LV_STYLE_LINE_BLEND_MODE                  = $91;
+  LV_STYLE_LINE_DASH_WIDTH                  = $92;
+  LV_STYLE_LINE_DASH_GAP                    = $93;
+  LV_STYLE_LINE_ROUNDED                     = $94;
+  LV_STYLE_LINE_COLOR                       = $99;
+  LV_STYLE_LINE_OPA                         = $9C;
+
+  LV_STYLE_IMAGE_BLEND_MODE                 = $80A0;
+  LV_STYLE_IMAGE_RECOLOR                    = $80A9;
+  LV_STYLE_IMAGE_OPA                        = $80AC;
+  LV_STYLE_IMAGE_RECOLOR_OPA                = $80AD;
+
+  LV_STYLE_TRANSITION_TIME                  = $B0;
+  LV_STYLE_TRANSITION_DELAY                 = $B1;
+  LV_STYLE_TRANSITION_PROP_1                = $B2;
+  LV_STYLE_TRANSITION_PROP_2                = $B3;
+  LV_STYLE_TRANSITION_PROP_3                = $B4;
+  LV_STYLE_TRANSITION_PROP_4                = $B5;
+  LV_STYLE_TRANSITION_PROP_5                = $B6;
+  LV_STYLE_TRANSITION_PROP_6                = $B7;
+  LV_STYLE_TRANSITION_PATH                  = $BE;
+
+  LV_STYLE_SCALE_WIDTH                      = $C0;
+  LV_STYLE_SCALE_BORDER_WIDTH               = $C1;
+  LV_STYLE_SCALE_END_BORDER_WIDTH           = $C2;
+  LV_STYLE_SCALE_END_LINE_WIDTH             = $C3;
+  LV_STYLE_SCALE_GRAD_COLOR                 = $C9;
+  LV_STYLE_SCALE_END_COLOR                  = $CA;
 
   LV_SLIDER_TYPE_NORMAL                     = 0;
   LV_SLIDER_TYPE_SYMMETRICAL                = 1;
@@ -283,11 +421,18 @@ const
   LV_SWITCH_PART_KNOB                       = _LV_BAR_PART_VIRTUAL_LAST;    // Switch knob.
   _LV_SWITCH_PART_VIRTUAL_LAST              = LV_SWITCH_PART_KNOB + 1;
 
-
   LV_CHART_TYPE_NONE                        = $00; // Don't draw the series
   LV_CHART_TYPE_LINE                        = $01; // Connect the points with lines
   LV_CHART_TYPE_COLUMN                      = $02; // Draw columns
   LV_CHART_TYPE_SCATTER                     = $03; // X/Y chart, points and/or lines
+
+  LV_BTN_STATE_RELEASED                     = 0;
+  LV_BTN_STATE_PRESSED                      = 1;
+  LV_BTN_STATE_DISABLED                     = 2;
+  LV_BTN_STATE_CHECKED_RELEASED             = 3;
+  LV_BTN_STATE_CHECKED_PRESSED              = 4;
+  LV_BTN_STATE_CHECKED_DISABLED             = 5;
+  _LV_BTN_STATE_LAST                        = 6; // Number of states
 
   LV_BTNMATRIX_CTRL_HIDDEN                  = $0008; // Button hidden
   LV_BTNMATRIX_CTRL_NO_REPEAT               = $0010; // Do not repeat press this button.
@@ -335,11 +480,7 @@ const
   LV_LAYOUT_GRID                            = 11; // Align same-sized object into a grid
   _LV_LAYOUT_LAST                           = 12;
 
-  LV_CONT_PART_MAIN                         = LV_OBJ_PART_MAIN;
-//  _LV_CONT_PART_VIRTUAL_LAST                = _LV_OBJ_PART_VIRTUAL_LAST;
-  _LV_CONT_PART_REAL_LAST                   = _LV_OBJ_PART_REAL_LAST;
-
-  LV_FIT_NONE                               = 0; // Do not change the size automatically
+   LV_FIT_NONE                               = 0; // Do not change the size automatically
   LV_FIT_TIGHT                              = 1; // Shrink wrap around the children
   LV_FIT_PARENT                             = 2; // Align the size to the parent's edge
   LV_FIT_MAX                                = 3; // Align the size to the parent's edge first but if there is an object out of it
@@ -353,6 +494,34 @@ const
   LV_STATE_HOVERED                          = $08;
   LV_STATE_PRESSED                          = $00;
   LV_STATE_DISABLED                         = $20;
+
+  LV_OPA_TRANSP                             = 0;
+  LV_OPA_0                                  = 0;
+  LV_OPA_10                                 = 25;
+  LV_OPA_20                                 = 51;
+  LV_OPA_30                                 = 76;
+  LV_OPA_40                                 = 102;
+  LV_OPA_50                                 = 127;
+  LV_OPA_60                                 = 153;
+  LV_OPA_70                                 = 178;
+  LV_OPA_80                                 = 204;
+  LV_OPA_90                                 = 229;
+  LV_OPA_100                                = 255;
+  LV_OPA_COVER                              = 255;
+
+  LV_TABLE_PART_BG                          = 0;
+  LV_TABLE_PART_CELL1                       = 1;
+  LV_TABLE_PART_CELL2                       = 2;
+  LV_TABLE_PART_CELL3                       = 3;
+  LV_TABLE_PART_CELL4                       = 4;
+
+  LV_CHART_PART_BG                          = LV_OBJ_PART_MAIN;
+ // LV_CHART_PART_SERIES_BG                   = _LV_OBJ_PART_VIRTUAL_LAST;
+//  LV_CHART_PART_SERIES                      = LV_CHART_PART_SERIES_BG + 1;
+
+
+  LV_ROLLER_MODE_NORMAL                     = 0; // Normal mode (roller ends at the end of the options).
+  LV_ROLLER_MODE_INIFINITE                  = 1; // Infinite mode (roller can be scrolled forever).
 
 type
   Tlv_obj = record    // may not need to elaborate as may not need to access directly    should be 68 bytes in size
@@ -418,7 +587,6 @@ type
     _type : array [0..LV_MAX_ANCESTOR_NUM - 1] of byte; // [0]: the actual type, [1]: ancestor, [2] #1's ancestor
                                                         // ... [x]: "lv_obj"
   end;
-
 
   Plv_obj_type = ^Tlv_obj_type;
   Tlv_obj_user_data = pointer;        // to match conf settings
@@ -518,6 +686,8 @@ type
   end;
   Plv_indev_drv = ^Tlv_indev_drv;
 
+// ----------- lv_blend.h ------------
+  Tlv_blend_mode = Tuint8;
 
 // ----------- lv_canvas.h ------------
   Tlv_canvas_style = Tuint8;
@@ -583,6 +753,9 @@ type
   Tlv_arc_part = Tuint8;
   Tlv_arc_type = Tuint8;
 
+// ------------ lv_arc.h ---------------
+  Tlv_roller_mode = Tuint8;
+
 // ------------ lv_bar.h ---------------
   Tlv_bar_type = Tuint8;
   Tlv_bar_part = Tuint8;
@@ -590,6 +763,10 @@ type
 // ------------ lv_btnmatrix.h ---------------
   Tlv_btnmatrix_ctrl = Tuint16;
   Tlv_btnmatrix_part = Tuint8;
+
+
+// ------------ lv_list.h ---------------
+  Tlv_list_style_t = Tuint8;
 
 // ------------ lv_font.h ---------------
   Tlv_font = record
@@ -1290,6 +1467,26 @@ procedure lv_page_set_scrl_width (page : Plv_obj; w : Tlv_coord);
 procedure lv_page_set_scrl_height (page : Plv_obj; h : Tlv_coord);
 procedure lv_page_set_scrl_layout (page : Plv_obj; layout : Tlv_layout);
 
+// table
+function lv_table_create (par : Plv_obj; const copy : Plv_obj) : Plv_obj; cdecl; external;
+procedure lv_table_set_cell_value (table : Plv_obj; row, col : Tuint16; const txt : PChar); cdecl; external;
+procedure lv_table_set_row_cnt (table : Plv_obj; row_cnt : Tuint16); cdecl; external;
+procedure lv_table_set_col_cnt (table : Plv_obj; col_cnt : Tuint16); cdecl; external;
+procedure lv_table_set_col_width (table : Plv_obj; col_id : Tuint16; w : Tlv_coord); cdecl; external;
+procedure lv_table_set_cell_align (table : Plv_obj; row, col : Tuint16; align : Tlv_label_align); cdecl; external;
+procedure lv_table_set_cell_type (table : Plv_obj; row, col : Tuint16; _type : Tuint8); cdecl; external;
+procedure lv_table_set_cell_crop (table : Plv_obj; row, col : Tuint16; crop : LongBool); cdecl; external;
+procedure lv_table_set_cell_merge_right (table : Plv_obj; row, col : Tuint16; en : LongBool); cdecl; external;
+function lv_table_get_cell_value (table : Plv_obj; row, col : Tuint16) : PChar; cdecl; external;
+function lv_table_get_row_cnt (table : Plv_obj) : Tuint16; cdecl; external;
+function lv_table_get_col_cnt (table : Plv_obj) : Tuint16; cdecl; external;
+function lv_table_get_col_width (table : Plv_obj; col_id : Tuint16) : Tlv_coord; cdecl; external;
+function lv_table_get_cell_align (table : Plv_obj; row, col : Tuint16) : Tlv_label_align; cdecl; external;
+function lv_table_get_cell_type (table : Plv_obj; row, col : Tuint16) : Tlv_label_align; cdecl; external;
+function lv_table_get_cell_crop (table : Plv_obj; row, col : Tuint16) : Tlv_label_align; cdecl; external;
+function lv_table_get_cell_merge_right (table : Plv_obj; row, col : Tuint16) : LongBool; cdecl; external;
+function lv_table_get_pressed_cell (table : Plv_obj; row, col : Tuint16) : Tlv_res; cdecl; external;
+
 // led
 function lv_led_create (par : Plv_obj; const copy : Plv_obj) : Plv_obj; cdecl; external;
 procedure lv_led_set_bright (led : Plv_obj; bright : Tuint8); cdecl; external;
@@ -1406,6 +1603,60 @@ procedure lv_chart_refresh (chart : Plv_obj); cdecl; external;
 
 // checkbox
 function lv_checkbox_create (par : Plv_obj; const copy : Plv_obj) : Plv_obj; cdecl; external;
+procedure lv_checkbox_set_text(cb : Plv_obj; const txt : PChar); cdecl; external;
+procedure lv_checkbox_set_text_static(cb : Plv_obj; const txt : PChar); cdecl; external;
+procedure lv_checkbox_set_checked (cb : Plv_obj; checked : LongBool);
+procedure lv_checkbox_set_disabled (cb : Plv_obj);
+procedure lv_checkbox_set_state (cb : Plv_obj; state : Tlv_btn_state);
+function lv_checkbox_get_text (const cb : Plv_obj) : PChar; cdecl; external;
+function lv_checkbox_is_checked (const cb : Plv_obj) : LongBool;
+function lv_checkbox_is_inactive (const cb : Plv_obj) : LongBool;
+function lv_checkbox_get_state (const cb : Plv_obj) : Tlv_btn_state;
+
+// list
+function lv_list_create (par : Plv_obj; const copy : Plv_obj) : Plv_obj; cdecl; external;
+procedure lv_list_clean (list : Plv_obj); cdecl; external;
+function lv_list_add_btn (list : Plv_obj; const img_src : pointer; const txt : PChar) : Plv_obj; cdecl; external;
+function lv_list_remove (const list : Plv_obj; index : Tuint16) : LongBool; cdecl; external;
+procedure lv_list_focus_btn (list : Plv_obj; btn : Plv_obj); cdecl; external;
+procedure lv_list_set_scrollbar_mode (list : Plv_obj; mode : Tlv_scrollbar_mode);
+procedure lv_list_set_scroll_propagation(list : Plv_obj; en : LongBool);
+procedure lv_list_set_edge_flash(list : Plv_obj; en : LongBool);
+procedure lv_list_set_anim_time(list : Plv_obj; anim_time : Tuint16);
+procedure lv_list_set_layout (list : Plv_obj; layout : Tlv_layout); cdecl; external;
+function lv_list_get_btn_text (const btn : Plv_obj) : PChar; cdecl; external;
+function lv_list_get_btn_label (const btn : Plv_obj) : Plv_obj; cdecl; external;
+function lv_list_get_btn_img (const btn : Plv_obj) : Plv_obj; cdecl; external;
+function lv_list_get_prev_btn (const list : Plv_obj; prev_btn : Plv_obj) : Plv_obj; cdecl; external;
+function lv_list_get_next_btn (const list : Plv_obj; prev_btn : Plv_obj) : Plv_obj; cdecl; external;
+function lv_list_get_btn_index (const list : Plv_obj; const btn : Plv_obj) : Tint32; cdecl; external;
+function lv_list_get_size (const list : Plv_obj) : Tuint16; cdecl; external;
+function lv_list_get_btn_selected (const list : Plv_obj) : Plv_obj;cdecl; external;
+function lv_list_get_layout (list : Plv_obj) : Tlv_layout; cdecl; external;
+function lv_list_get_scrollbar_mode (const list : Plv_obj) : Tlv_scrollbar_mode;
+function lv_list_get_scroll_propagation(list : Plv_obj) : LongBool;
+function lv_list_get_edge_flash (list : Plv_obj) : LongBool;
+function lv_list_get_anim_time (const list : Plv_obj) : Tuint16;
+procedure lv_list_up (const list : Plv_obj); cdecl; external;
+procedure lv_list_down (const list : Plv_obj); cdecl; external;
+procedure lv_list_focus (const btn : Plv_obj; anim : Tlv_anim_enable); cdecl; external;
+
+// roller
+function lv_roller_create (par : Plv_obj; const copy : Plv_obj) : Plv_obj; cdecl; external;
+procedure lv_roller_set_options (roller : Plv_obj; const pptions : PChar; mode : Tlv_roller_mode); cdecl; external;
+procedure lv_roller_set_align (roller : Plv_obj; align : Tlv_label_align); cdecl; external;
+procedure lv_roller_set_selected (roller : Plv_obj; sel_opt : Tuint16; anim : Tlv_anim_enable); cdecl; external;
+procedure lv_roller_set_visible_row_count (roller : Plv_obj; row_cnt : Tuint8); cdecl; external;
+procedure lv_roller_set_auto_fit (roller : Plv_obj; auto_fit : LongBool); cdecl; external;
+procedure lv_roller_set_anim_time (roller : Plv_obj; anim_time : Tuint16);
+
+function lv_roller_get_selected (const roller : Plv_obj) : Tuint16; cdecl; external;
+function lv_roller_get_option_cnt (const roller : Plv_obj) : Tuint16; cdecl; external;
+procedure lv_roller_get_selected_str (const roller : Plv_obj; buf : PChar; buf_size : Tuint32); cdecl; external;
+function lv_roller_get_align (const roller : Plv_obj) : Tlv_label_align; cdecl; external;
+function lv_roller_get_auto_fit (roller : Plv_obj) : LongBool; cdecl; external;
+function lv_roller_get_options (const roller : Plv_obj) : PChar; cdecl; external;
+function lv_roller_get_anim_time (const roller : Plv_obj) : Tuint16;
 
 // drop down
 function lv_dropdown_create (par : Plv_obj; const copy : Plv_obj) : Plv_obj; cdecl; external;
@@ -1474,6 +1725,286 @@ procedure lv_textarea_cursor_up (ta : Plv_obj); cdecl; external;
 
 // -------- macros -------------
 function lv_scr_act : Plv_obj;
+
+// style macros
+function lv_obj_get_style_radius (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_radius (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_radius (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_clip_corner (const obj : Plv_obj; part : Tuint8) : LongBool;
+procedure lv_obj_set_style_local_clip_corner (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+procedure lv_style_set_clip_corner (style : Plv_style; state : Tlv_state; value : LongBool);
+function lv_obj_get_style_size (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_size (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_size (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transform_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transform_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transform_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transform_height (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transform_height (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transform_height (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transform_angle (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transform_angle (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transform_angle (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transform_zoom (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transform_zoom (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transform_zoom (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_opa_scale (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_opa_scale (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_opa_scale (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_pad_top (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_pad_top (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_pad_top (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_pad_bottom (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_pad_bottom (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_pad_bottom (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_pad_left (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_pad_left (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_pad_left (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_pad_right (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_pad_right (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_pad_right (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_pad_inner (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_pad_inner (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_pad_inner (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_margin_top (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_margin_top (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_margin_top (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_margin_bottom (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_margin_bottom (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_margin_bottom (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_margin_left (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_margin_left (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_margin_left (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_margin_right (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_margin_right (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_margin_right (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_bg_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_bg_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_bg_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_bg_main_stop (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_bg_main_stop (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_bg_main_stop (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_bg_grad_stop (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_bg_grad_stop (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_bg_grad_stop (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_bg_grad_dir (const obj : Plv_obj; part : Tuint8) : Tlv_grad_dir;
+procedure lv_obj_set_style_local_bg_grad_dir (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_grad_dir);
+procedure lv_style_set_bg_grad_dir (style : Plv_style; state : Tlv_state; value : Tlv_grad_dir);
+function lv_obj_get_style_bg_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_bg_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_bg_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_bg_grad_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_bg_grad_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_bg_grad_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_bg_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_bg_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_bg_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_border_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_border_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_border_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_border_side (const obj : Plv_obj; part : Tuint8) : Tlv_border_side;
+procedure lv_obj_set_style_local_border_side (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_border_side);
+procedure lv_style_set_border_side (style : Plv_style; state : Tlv_state; value : Tlv_border_side);
+function lv_obj_get_style_border_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_border_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_border_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_border_post (const obj : Plv_obj; part : Tuint8) : LongBool;
+procedure lv_obj_set_style_local_border_post (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+procedure lv_style_set_border_post (style : Plv_style; state : Tlv_state; value : LongBool);
+function lv_obj_get_style_border_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_border_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_border_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_border_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_border_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_border_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_outline_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_outline_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_outline_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_outline_pad (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_outline_pad (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_outline_pad (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_outline_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_outline_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_outline_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_outline_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_outline_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_outline_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_outline_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_outline_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_outline_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_shadow_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_shadow_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_shadow_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_shadow_ofs_x (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_shadow_ofs_x (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_shadow_ofs_x (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_shadow_ofs_y (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_shadow_ofs_y (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_shadow_ofs_y (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_shadow_spread (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_shadow_spread (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_shadow_spread (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_shadow_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_shadow_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_shadow_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_shadow_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_shadow_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_shadow_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_shadow_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_shadow_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_shadow_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_pattern_repeat (const obj : Plv_obj; part : Tuint8) : LongBool;
+procedure lv_obj_set_style_local_pattern_repeat (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+procedure lv_style_set_pattern_repeat (style : Plv_style; state : Tlv_state; value : LongBool);
+function lv_obj_get_style_pattern_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_pattern_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_pattern_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_pattern_recolor (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_pattern_recolor (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_pattern_recolor (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_pattern_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_pattern_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_pattern_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_pattern_recolor_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_pattern_recolor_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_pattern_recolor_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_pattern_image (const obj : Plv_obj; part : Tuint8) : pointer;
+procedure lv_obj_set_style_local_pattern_image (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : pointer);
+procedure lv_style_set_pattern_image (style : Plv_style; state : Tlv_state; const value : pointer);
+function lv_obj_get_style_value_letter_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_value_letter_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_value_letter_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_value_line_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_value_line_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_value_line_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_value_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_value_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_value_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_value_ofs_x (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_value_ofs_x (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_value_ofs_x (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_value_ofs_y (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_value_ofs_y (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_value_ofs_y (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_value_align (const obj : Plv_obj; part : Tuint8) : Tlv_align;
+procedure lv_obj_set_style_local_value_align (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_align);
+procedure lv_style_set_value_align (style : Plv_style; state : Tlv_state; value : Tlv_align);
+function lv_obj_get_style_value_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_value_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_value_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_value_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_value_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_value_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_value_font (const obj : Plv_obj; part : Tuint8) : Plv_font;
+procedure lv_obj_set_style_local_value_font (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : Plv_font);
+procedure lv_style_set_value_font (style : Plv_style; state : Tlv_state; const value : Plv_font);
+function lv_obj_get_style_value_str (const obj : Plv_obj; part : Tuint8) : PChar;
+procedure lv_obj_set_style_local_value_str (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : PChar);
+procedure lv_style_set_value_str (style : Plv_style; state : Tlv_state; const value : PChar);
+function lv_obj_get_style_text_letter_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_text_letter_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_text_letter_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_text_line_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_text_line_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_text_line_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_text_decor (const obj : Plv_obj; part : Tuint8) : Tlv_text_decor;
+procedure lv_obj_set_style_local_text_decor (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_text_decor);
+procedure lv_style_set_text_decor (style : Plv_style; state : Tlv_state; value : Tlv_text_decor);
+function lv_obj_get_style_text_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_text_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_text_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_text_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_text_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_text_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_text_sel_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_text_sel_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_text_sel_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_text_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_text_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_text_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_text_font (const obj : Plv_obj; part : Tuint8) : Plv_font;
+procedure lv_obj_set_style_local_text_font (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : Plv_font);
+procedure lv_style_set_text_font (style : Plv_style; state : Tlv_state; const value : Plv_font);
+function lv_obj_get_style_line_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_line_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_line_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_line_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_line_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_line_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_line_dash_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_line_dash_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_line_dash_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_line_dash_gap (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_line_dash_gap (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_line_dash_gap (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_line_rounded (const obj : Plv_obj; part : Tuint8) : LongBool;
+procedure lv_obj_set_style_local_line_rounded (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+procedure lv_style_set_line_rounded (style : Plv_style; state : Tlv_state; value : LongBool);
+function lv_obj_get_style_line_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_line_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_line_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_line_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_line_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_line_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_image_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+procedure lv_obj_set_style_local_image_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+procedure lv_style_set_image_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+function lv_obj_get_style_image_recolor (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_image_recolor (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_image_recolor (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_image_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_image_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_image_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_image_recolor_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+procedure lv_obj_set_style_local_image_recolor_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+procedure lv_style_set_image_recolor_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+function lv_obj_get_style_transition_time (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_time (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_time (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_delay (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_delay (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_delay (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_prop_1 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_prop_1 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_prop_1 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_prop_2 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_prop_2 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_prop_2 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_prop_3 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_prop_3 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_prop_3 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_prop_4 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_prop_4 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_prop_4 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_prop_5 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_prop_5 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_prop_5 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_prop_6 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_transition_prop_6 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_transition_prop_6 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_transition_path (const obj : Plv_obj; part : Tuint8) : pointer;
+procedure lv_obj_set_style_local_transition_path (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : pointer);
+procedure lv_style_set_transition_path (style : Plv_style; state : Tlv_state; const value : pointer);
+function lv_obj_get_style_scale_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_scale_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_scale_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_scale_border_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_scale_border_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_scale_border_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_scale_end_border_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_scale_end_border_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_scale_end_border_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_scale_end_line_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+procedure lv_obj_set_style_local_scale_end_line_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+procedure lv_style_set_scale_end_line_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+function lv_obj_get_style_scale_grad_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_scale_grad_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_scale_grad_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+function lv_obj_get_style_scale_end_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+procedure lv_obj_set_style_local_scale_end_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+procedure lv_style_set_scale_end_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+
+function lv_dpx (n : Tlv_coord) : Tlv_coord;
 
 implementation
 
@@ -1805,47 +2336,1111 @@ begin
   Result := lv_page_get_edge_flash (ta);
 end;
 
-
-(*
-#define _LV_OBJ_STYLE_SET_GET_DECLARE(prop_name, func_name, value_type, style_type, scalar)                             \
-    _OBJ_GET_STYLE_##scalar(prop_name, func_name, value_type, style_type)                                               \
-    _OBJ_SET_STYLE_LOCAL_##scalar(prop_name, func_name, value_type, style_type)                                         \
-    _OBJ_SET_STYLE_##scalar(prop_name, func_name, value_type, style_type)
-
-  function lv_obj_get_style_margin_top
-
-
+// style macros
+function lv_obj_get_style_radius (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_RADIUS);
+end;
+procedure lv_obj_set_style_local_radius (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_RADIUS or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_radius (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_RADIUS or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_clip_corner (const obj : Plv_obj; part : Tuint8) : LongBool;
+begin
+	Result := LongBool (_lv_obj_get_style_int (obj, part, LV_STYLE_CLIP_CORNER));
+end;
+procedure lv_obj_set_style_local_clip_corner (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_CLIP_CORNER or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+procedure lv_style_set_clip_corner (style : Plv_style; state : Tlv_state; value : LongBool);
+begin
+	_lv_style_set_int (style, LV_STYLE_CLIP_CORNER or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+function lv_obj_get_style_size (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SIZE);
+end;
+procedure lv_obj_set_style_local_size (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SIZE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_size (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SIZE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transform_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result :=  _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSFORM_WIDTH);
+end;
+procedure lv_obj_set_style_local_transform_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSFORM_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transform_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSFORM_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transform_height (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSFORM_HEIGHT);
+end;
+procedure lv_obj_set_style_local_transform_height (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSFORM_HEIGHT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transform_height (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSFORM_HEIGHT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transform_angle (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSFORM_ANGLE);
+end;
+procedure lv_obj_set_style_local_transform_angle (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSFORM_ANGLE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transform_angle (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSFORM_ANGLE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transform_zoom (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSFORM_ZOOM);
+end;
+procedure lv_obj_set_style_local_transform_zoom (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSFORM_ZOOM or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transform_zoom (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSFORM_ZOOM or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_opa_scale (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_OPA_SCALE);
+end;
+procedure lv_obj_set_style_local_opa_scale (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_OPA_SCALE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_opa_scale (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_OPA_SCALE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pad_top (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_PAD_TOP);
+end;
+procedure lv_obj_set_style_local_pad_top (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PAD_TOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pad_top (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_PAD_TOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pad_bottom (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_PAD_BOTTOM);
+end;
 procedure lv_obj_set_style_local_pad_bottom (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
 begin
-  _lv_obj_set_style_local##style_type (obj, part, LV_STYLE_##prop_name | (state << LV_STYLE_STATE_POS), value);           \
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PAD_BOTTOM or (state shl LV_STYLE_STATE_POS), value);
 end;
-
-
-  lv_obj_set_style_local_pad_top (obj, part, state, value);
-  lv_obj_set_style_local_pad_bottom (obj, part, state, value);
-  lv_obj_set_style_local_pad_left (obj, part, state, value);
-  lv_obj_set_style_local_pad_right (obj, part, state, value);
-
-#define _OBJ_SET_STYLE_LOCAL_scalar(prop_name, func_name, value_type, style_type)                                               \
-    static inline void lv_obj_set_style_local_##func_name (lv_obj_t * obj, uint8_t part, lv_state_t state, value_type value)    \
-    {                                                                                                                           \
-        _lv_obj_set_style_local##style_type (obj, part, LV_STYLE_##prop_name | (state << LV_STYLE_STATE_POS), value);           \
-    }
-
-
-#define _OBJ_GET_STYLE_scalar(prop_name, func_name, value_type, style_type)                         \
-    static inline value_type lv_obj_get_style_##func_name (const lv_obj_t * obj, uint8_t part)      \
-    {                                                                                               \
-        return (value_type) _lv_obj_get_style##style_type (obj, part, LV_STYLE_##prop_name);        \
-    }
-
-    _LV_OBJ_STYLE_SET_GET_DECLARE(PAD_BOTTOM, pad_bottom, lv_style_int_t, _int, scalar)
-
-_LV_OBJ_STYLE_SET_GET_DECLARE(MARGIN_TOP, margin_top, lv_style_int_t, _int, scalar)
-_LV_OBJ_STYLE_SET_GET_DECLARE(MARGIN_BOTTOM, margin_bottom, lv_style_int_t, _int, scalar)
-_LV_OBJ_STYLE_SET_GET_DECLARE(MARGIN_LEFT, margin_left, lv_style_int_t, _int, scalar)
-_LV_OBJ_STYLE_SET_GET_DECLARE(MARGIN_RIGHT, margin_right, lv_style_int_t, _int, scalar)
-
+procedure lv_style_set_pad_bottom (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_PAD_BOTTOM or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pad_left (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_PAD_LEFT);
+end;
+procedure lv_obj_set_style_local_pad_left (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PAD_LEFT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pad_left (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_PAD_LEFT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pad_right (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_PAD_RIGHT);
+end;
+procedure lv_obj_set_style_local_pad_right (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PAD_RIGHT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pad_right (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_PAD_RIGHT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pad_inner (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_PAD_INNER);
+end;
+procedure lv_obj_set_style_local_pad_inner (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PAD_INNER or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pad_inner (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_PAD_INNER or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_margin_top (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_MARGIN_TOP);
+end;
+procedure lv_obj_set_style_local_margin_top (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_MARGIN_TOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_margin_top (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_MARGIN_TOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_margin_bottom (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_MARGIN_BOTTOM);
+end;
+procedure lv_obj_set_style_local_margin_bottom (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_MARGIN_BOTTOM or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_margin_bottom (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_MARGIN_BOTTOM or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_margin_left (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_MARGIN_LEFT);
+end;
+procedure lv_obj_set_style_local_margin_left (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_MARGIN_LEFT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_margin_left (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_MARGIN_LEFT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_margin_right (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_MARGIN_RIGHT);
+end;
+procedure lv_obj_set_style_local_margin_right (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_MARGIN_RIGHT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_margin_right (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_MARGIN_RIGHT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := Tlv_blend_mode (_lv_obj_get_style_int (obj, part, LV_STYLE_BG_BLEND_MODE));
+end;
+procedure lv_obj_set_style_local_bg_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BG_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_BG_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_main_stop (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_BG_MAIN_STOP);
+end;
+procedure lv_obj_set_style_local_bg_main_stop (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BG_MAIN_STOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_main_stop (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_BG_MAIN_STOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_grad_stop (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_BG_GRAD_STOP);
+end;
+procedure lv_obj_set_style_local_bg_grad_stop (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BG_GRAD_STOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_grad_stop (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_BG_GRAD_STOP or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_grad_dir (const obj : Plv_obj; part : Tuint8) : Tlv_grad_dir;
+begin
+	Result := Tlv_grad_dir (_lv_obj_get_style_int (obj, part, LV_STYLE_BG_GRAD_DIR));
+end;
+procedure lv_obj_set_style_local_bg_grad_dir (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_grad_dir);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BG_GRAD_DIR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_grad_dir (style : Plv_style; state : Tlv_state; value : Tlv_grad_dir);
+begin
+	_lv_style_set_int (style, LV_STYLE_BG_GRAD_DIR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_BG_COLOR);
+end;
+procedure lv_obj_set_style_local_bg_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_BG_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_BG_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_grad_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_BG_GRAD_COLOR);
+end;
+procedure lv_obj_set_style_local_bg_grad_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_BG_GRAD_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_grad_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_BG_GRAD_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_bg_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_BG_OPA);
+end;
+procedure lv_obj_set_style_local_bg_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_BG_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_bg_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_BG_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_border_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_BORDER_WIDTH);
+end;
+procedure lv_obj_set_style_local_border_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BORDER_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_border_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_BORDER_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_border_side (const obj : Plv_obj; part : Tuint8) : Tlv_border_side;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_BORDER_SIDE);
+end;
+procedure lv_obj_set_style_local_border_side (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_border_side);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BORDER_SIDE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_border_side (style : Plv_style; state : Tlv_state; value : Tlv_border_side);
+begin
+	_lv_style_set_int (style, LV_STYLE_BORDER_SIDE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_border_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_BORDER_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_border_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BORDER_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_border_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_BORDER_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_border_post (const obj : Plv_obj; part : Tuint8) : LongBool;
+begin
+	Result := LongBool (_lv_obj_get_style_int (obj, part, LV_STYLE_BORDER_POST));
+end;
+procedure lv_obj_set_style_local_border_post (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_BORDER_POST or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+procedure lv_style_set_border_post (style : Plv_style; state : Tlv_state; value : LongBool);
+begin
+	_lv_style_set_int (style, LV_STYLE_BORDER_POST or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+function lv_obj_get_style_border_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_BORDER_COLOR);
+end;
+procedure lv_obj_set_style_local_border_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_BORDER_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_border_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_BORDER_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_border_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_BORDER_OPA);
+end;
+procedure lv_obj_set_style_local_border_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_BORDER_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_border_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_BORDER_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_outline_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_OUTLINE_WIDTH);
+end;
+procedure lv_obj_set_style_local_outline_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_OUTLINE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_outline_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_OUTLINE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_outline_pad (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_OUTLINE_PAD);
+end;
+procedure lv_obj_set_style_local_outline_pad (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_OUTLINE_PAD or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_outline_pad (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_OUTLINE_PAD or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_outline_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := Tlv_blend_mode (_lv_obj_get_style_int (obj, part, LV_STYLE_OUTLINE_BLEND_MODE));
+end;
+procedure lv_obj_set_style_local_outline_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_OUTLINE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_outline_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_OUTLINE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_outline_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_OUTLINE_COLOR);
+end;
+procedure lv_obj_set_style_local_outline_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_OUTLINE_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_outline_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_OUTLINE_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_outline_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_OUTLINE_OPA);
+end;
+procedure lv_obj_set_style_local_outline_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_OUTLINE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_outline_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_OUTLINE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SHADOW_WIDTH);
+end;
+procedure lv_obj_set_style_local_shadow_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SHADOW_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SHADOW_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_ofs_x (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SHADOW_OFS_X);
+end;
+procedure lv_obj_set_style_local_shadow_ofs_x (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SHADOW_OFS_X or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_ofs_x (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SHADOW_OFS_X or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_ofs_y (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SHADOW_OFS_Y);
+end;
+procedure lv_obj_set_style_local_shadow_ofs_y (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SHADOW_OFS_Y or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_ofs_y (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SHADOW_OFS_Y or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_spread (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SHADOW_SPREAD);
+end;
+procedure lv_obj_set_style_local_shadow_spread (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SHADOW_SPREAD or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_spread (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SHADOW_SPREAD or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SHADOW_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_shadow_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SHADOW_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_SHADOW_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_SHADOW_COLOR);
+end;
+procedure lv_obj_set_style_local_shadow_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_SHADOW_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_SHADOW_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_shadow_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_SHADOW_OPA);
+end;
+procedure lv_obj_set_style_local_shadow_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_SHADOW_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_shadow_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_SHADOW_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pattern_repeat (const obj : Plv_obj; part : Tuint8) : LongBool;
+begin
+	Result := LongBool (_lv_obj_get_style_int (obj, part, LV_STYLE_PATTERN_REPEAT));
+end;
+procedure lv_obj_set_style_local_pattern_repeat (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PATTERN_REPEAT or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+procedure lv_style_set_pattern_repeat (style : Plv_style; state : Tlv_state; value : LongBool);
+begin
+	_lv_style_set_int (style, LV_STYLE_PATTERN_REPEAT or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+function lv_obj_get_style_pattern_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_PATTERN_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_pattern_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_PATTERN_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pattern_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_PATTERN_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pattern_recolor (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_PATTERN_RECOLOR);
+end;
+procedure lv_obj_set_style_local_pattern_recolor (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_PATTERN_RECOLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pattern_recolor (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_PATTERN_RECOLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pattern_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_PATTERN_OPA);
+end;
+procedure lv_obj_set_style_local_pattern_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_PATTERN_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pattern_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_PATTERN_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pattern_recolor_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_PATTERN_RECOLOR_OPA);
+end;
+procedure lv_obj_set_style_local_pattern_recolor_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_PATTERN_RECOLOR_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pattern_recolor_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_PATTERN_RECOLOR_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_pattern_image (const obj : Plv_obj; part : Tuint8) : pointer;
+begin
+	Result :=  _lv_obj_get_style_ptr (obj, part, LV_STYLE_PATTERN_IMAGE);
+end;
+procedure lv_obj_set_style_local_pattern_image (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : pointer);
+begin
+	_lv_obj_set_style_local_ptr (obj, part, LV_STYLE_PATTERN_IMAGE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_pattern_image (style : Plv_style; state : Tlv_state; const value : pointer);
+begin
+	_lv_style_set_ptr (style, LV_STYLE_PATTERN_IMAGE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_letter_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_VALUE_LETTER_SPACE);
+end;
+procedure lv_obj_set_style_local_value_letter_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_VALUE_LETTER_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_letter_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_VALUE_LETTER_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_line_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_VALUE_LINE_SPACE);
+end;
+procedure lv_obj_set_style_local_value_line_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+_lv_obj_set_style_local_int (obj, part, LV_STYLE_VALUE_LINE_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_line_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_VALUE_LINE_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_VALUE_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_value_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_VALUE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_VALUE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_ofs_x (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_VALUE_OFS_X);
+end;
+procedure lv_obj_set_style_local_value_ofs_x (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_VALUE_OFS_X or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_ofs_x (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_VALUE_OFS_X or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_ofs_y (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_VALUE_OFS_Y);
+end;
+procedure lv_obj_set_style_local_value_ofs_y (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_VALUE_OFS_Y or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_ofs_y (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_VALUE_OFS_Y or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_align (const obj : Plv_obj; part : Tuint8) : Tlv_align;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_VALUE_ALIGN);
+end;
+procedure lv_obj_set_style_local_value_align (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_align);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_VALUE_ALIGN or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_align (style : Plv_style; state : Tlv_state; value : Tlv_align);
+begin
+	_lv_style_set_int (style, LV_STYLE_VALUE_ALIGN or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_VALUE_COLOR);
+end;
+procedure lv_obj_set_style_local_value_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_VALUE_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_VALUE_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_VALUE_OPA);
+end;
+procedure lv_obj_set_style_local_value_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_VALUE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_VALUE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_font (const obj : Plv_obj; part : Tuint8) : Plv_font;
+begin
+	Result := _lv_obj_get_style_ptr (obj, part, LV_STYLE_VALUE_FONT);
+end;
+procedure lv_obj_set_style_local_value_font (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : Plv_font);
+begin
+	_lv_obj_set_style_local_ptr (obj, part, LV_STYLE_VALUE_FONT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_font (style : Plv_style; state : Tlv_state; const value : Plv_font);
+begin
+	_lv_style_set_ptr (style, LV_STYLE_VALUE_FONT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_value_str (const obj : Plv_obj; part : Tuint8) : PChar;
+begin
+	Result := PChar (_lv_obj_get_style_ptr (obj, part, LV_STYLE_VALUE_STR));
+end;
+procedure lv_obj_set_style_local_value_str (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : PChar);
+begin
+	_lv_obj_set_style_local_ptr (obj, part, LV_STYLE_VALUE_STR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_value_str (style : Plv_style; state : Tlv_state; const value : PChar);
+begin
+	_lv_style_set_ptr (style, LV_STYLE_VALUE_STR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_letter_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TEXT_LETTER_SPACE);
+end;
+procedure lv_obj_set_style_local_text_letter_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TEXT_LETTER_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_letter_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TEXT_LETTER_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_line_space (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TEXT_LINE_SPACE);
+end;
+procedure lv_obj_set_style_local_text_line_space (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TEXT_LINE_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_line_space (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TEXT_LINE_SPACE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_decor (const obj : Plv_obj; part : Tuint8) : Tlv_text_decor;
+begin
+	Result :=_lv_obj_get_style_int (obj, part, LV_STYLE_TEXT_DECOR);
+end;
+procedure lv_obj_set_style_local_text_decor (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_text_decor);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TEXT_DECOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_decor (style : Plv_style; state : Tlv_state; value : Tlv_text_decor);
+begin
+	_lv_style_set_int (style, LV_STYLE_TEXT_DECOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TEXT_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_text_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TEXT_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_TEXT_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_TEXT_COLOR);
+end;
+procedure lv_obj_set_style_local_text_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_TEXT_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_TEXT_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_sel_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_TEXT_SEL_COLOR);
+end;
+procedure lv_obj_set_style_local_text_sel_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_TEXT_SEL_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_sel_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_TEXT_SEL_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_TEXT_OPA);
+end;
+procedure lv_obj_set_style_local_text_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_TEXT_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_TEXT_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_text_font (const obj : Plv_obj; part : Tuint8) : Plv_font;
+begin
+	Result := _lv_obj_get_style_ptr (obj, part, LV_STYLE_TEXT_FONT);
+end;
+procedure lv_obj_set_style_local_text_font (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : Plv_font);
+begin
+	_lv_obj_set_style_local_ptr (obj, part, LV_STYLE_TEXT_FONT or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_text_font (style : Plv_style; state : Tlv_state; const value : Plv_font);
+begin
+	_lv_style_set_ptr (style, LV_STYLE_TEXT_FONT or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_line_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_LINE_WIDTH);
+end;
+procedure lv_obj_set_style_local_line_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_LINE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_line_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_LINE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_line_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_LINE_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_line_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_LINE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_line_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_LINE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_line_dash_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_LINE_DASH_WIDTH);
+end;
+procedure lv_obj_set_style_local_line_dash_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_LINE_DASH_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_line_dash_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_LINE_DASH_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_line_dash_gap (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_LINE_DASH_GAP);
+end;
+procedure lv_obj_set_style_local_line_dash_gap (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_LINE_DASH_GAP or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_line_dash_gap (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_LINE_DASH_GAP or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_line_rounded (const obj : Plv_obj; part : Tuint8) : LongBool;
+begin
+	Result := LongBool (_lv_obj_get_style_int (obj, part, LV_STYLE_LINE_ROUNDED));
+end;
+procedure lv_obj_set_style_local_line_rounded (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : LongBool);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_LINE_ROUNDED or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+procedure lv_style_set_line_rounded (style : Plv_style; state : Tlv_state; value : LongBool);
+begin
+	_lv_style_set_int (style, LV_STYLE_LINE_ROUNDED or (state shl LV_STYLE_STATE_POS), Tlv_style_int (value));
+end;
+function lv_obj_get_style_line_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_LINE_COLOR);
+end;
+procedure lv_obj_set_style_local_line_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_LINE_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_line_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_LINE_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_line_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_LINE_OPA);
+end;
+procedure lv_obj_set_style_local_line_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_LINE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_line_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_LINE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_image_blend_mode (const obj : Plv_obj; part : Tuint8) : Tlv_blend_mode;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_IMAGE_BLEND_MODE);
+end;
+procedure lv_obj_set_style_local_image_blend_mode (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_IMAGE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_image_blend_mode (style : Plv_style; state : Tlv_state; value : Tlv_blend_mode);
+begin
+	_lv_style_set_int (style, LV_STYLE_IMAGE_BLEND_MODE or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_image_recolor (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_IMAGE_RECOLOR);
+end;
+procedure lv_obj_set_style_local_image_recolor (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_IMAGE_RECOLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_image_recolor (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_IMAGE_RECOLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_image_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_IMAGE_OPA);
+end;
+procedure lv_obj_set_style_local_image_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_IMAGE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_image_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_IMAGE_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_image_recolor_opa (const obj : Plv_obj; part : Tuint8) : Tlv_opa;
+begin
+	Result := _lv_obj_get_style_opa (obj, part, LV_STYLE_IMAGE_RECOLOR_OPA);
+end;
+procedure lv_obj_set_style_local_image_recolor_opa (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_obj_set_style_local_opa (obj, part, LV_STYLE_IMAGE_RECOLOR_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_image_recolor_opa (style : Plv_style; state : Tlv_state; value : Tlv_opa);
+begin
+	_lv_style_set_opa (style, LV_STYLE_IMAGE_RECOLOR_OPA or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_time (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_TIME);
+end;
+procedure lv_obj_set_style_local_transition_time (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_TIME or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_time (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_TIME or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_delay (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_DELAY);
+end;
+procedure lv_obj_set_style_local_transition_delay (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_DELAY or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_delay (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_DELAY or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_prop_1 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_PROP_1);
+end;
+procedure lv_obj_set_style_local_transition_prop_1 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_PROP_1 or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_prop_1 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_PROP_1 or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_prop_2 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_PROP_2);
+end;
+procedure lv_obj_set_style_local_transition_prop_2 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_PROP_2 or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_prop_2 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_PROP_2 or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_prop_3 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_PROP_3);
+end;
+procedure lv_obj_set_style_local_transition_prop_3 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_PROP_3 or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_prop_3 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_PROP_3 or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_prop_4 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+  Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_PROP_4);
+end;
+procedure lv_obj_set_style_local_transition_prop_4 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_PROP_4 or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_prop_4 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_PROP_4 or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_prop_5 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_PROP_5);
+end;
+procedure lv_obj_set_style_local_transition_prop_5 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_PROP_5 or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_prop_5 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_PROP_5 or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_prop_6 (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_TRANSITION_PROP_6);
+end;
+procedure lv_obj_set_style_local_transition_prop_6 (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_TRANSITION_PROP_6 or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_prop_6 (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_TRANSITION_PROP_6 or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_transition_path (const obj : Plv_obj; part : Tuint8) : pointer;
+begin
+	Result := _lv_obj_get_style_ptr (obj, part, LV_STYLE_TRANSITION_PATH);
+end;
+procedure lv_obj_set_style_local_transition_path (obj : Plv_obj; part : Tuint8; state : Tlv_state; const value : pointer);
+begin
+	_lv_obj_set_style_local_ptr (obj, part, LV_STYLE_TRANSITION_PATH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_transition_path (style : Plv_style; state : Tlv_state; const value : pointer);
+begin
+	_lv_style_set_ptr (style, LV_STYLE_TRANSITION_PATH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_scale_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SCALE_WIDTH);
+end;
+procedure lv_obj_set_style_local_scale_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SCALE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_scale_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SCALE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_scale_border_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SCALE_BORDER_WIDTH);
+end;
+procedure lv_obj_set_style_local_scale_border_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SCALE_BORDER_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_scale_border_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SCALE_BORDER_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_scale_end_border_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SCALE_END_BORDER_WIDTH);
+end;
+procedure lv_obj_set_style_local_scale_end_border_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SCALE_END_BORDER_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_scale_end_border_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SCALE_END_BORDER_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_scale_end_line_width (const obj : Plv_obj; part : Tuint8) : Tlv_style_int;
+begin
+	Result := _lv_obj_get_style_int (obj, part, LV_STYLE_SCALE_END_LINE_WIDTH);
+end;
+procedure lv_obj_set_style_local_scale_end_line_width (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_obj_set_style_local_int (obj, part, LV_STYLE_SCALE_END_LINE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_scale_end_line_width (style : Plv_style; state : Tlv_state; value : Tlv_style_int);
+begin
+	_lv_style_set_int (style, LV_STYLE_SCALE_END_LINE_WIDTH or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_scale_grad_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_SCALE_GRAD_COLOR);
+end;
+procedure lv_obj_set_style_local_scale_grad_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_SCALE_GRAD_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_scale_grad_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_SCALE_GRAD_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+function lv_obj_get_style_scale_end_color (const obj : Plv_obj; part : Tuint8) : Tlv_color;
+begin
+	Result := _lv_obj_get_style_color (obj, part, LV_STYLE_SCALE_END_COLOR);
+end;
+procedure lv_obj_set_style_local_scale_end_color (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_obj_set_style_local_color (obj, part, LV_STYLE_SCALE_END_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
+procedure lv_style_set_scale_end_color (style : Plv_style; state : Tlv_state; value : Tlv_color);
+begin
+	_lv_style_set_color (style, LV_STYLE_SCALE_END_COLOR or (state shl LV_STYLE_STATE_POS), value);
+end;
 
 procedure lv_obj_set_style_local_pad_all (obj : Plv_obj; part : Tuint8; state : Tlv_state; value : Tlv_style_int);
 begin
@@ -1886,7 +3481,7 @@ begin
   lv_style_set_pad_top (style, state, value);
   lv_style_set_pad_bottom (style, state, value);
 end;
-
+(*
 procedure lv_obj_set_style_local_margin_all (obj : Plv_obj; part : Tuint8; state : Tlv_state;
                                                      value : Tlv_style_int);
 begin
@@ -1930,5 +3525,103 @@ begin
   lv_style_set_margin_bottom (style, state, value);
 end;
           *)
+
+function lv_dpx (n : Tlv_coord) : Tlv_coord;
+begin
+  if n = 0 then
+    Result := 0
+  else
+    begin
+      if (lv_disp_get_dpi (nil) * n + 80) div 160 > 1 then
+        Result := (lv_disp_get_dpi (nil) * n + 80) div 160
+      else
+        Result := 1;
+    end;
+end;
+
+procedure lv_roller_set_anim_time (roller : Plv_obj; anim_time : Tuint16);
+begin
+  lv_page_set_anim_time (roller, anim_time);
+end;
+
+function lv_roller_get_anim_time (const roller : Plv_obj) : Tuint16;
+begin
+  Result :=  lv_page_get_anim_time (roller);
+end;
+
+procedure lv_list_set_scrollbar_mode (list : Plv_obj; mode : Tlv_scrollbar_mode);
+begin
+  lv_page_set_scrollbar_mode (list, mode);
+end;
+procedure lv_list_set_scroll_propagation(list : Plv_obj; en : LongBool);
+begin
+  lv_page_set_scroll_propagation(list, en);
+end;
+
+procedure lv_list_set_edge_flash(list : Plv_obj; en : LongBool);
+begin
+  lv_page_set_edge_flash (list, en);
+end;
+
+procedure lv_list_set_anim_time(list : Plv_obj; anim_time : Tuint16);
+begin
+  lv_page_set_anim_time (list, anim_time);
+end;
+
+function lv_list_get_scrollbar_mode (const list : Plv_obj) : Tlv_scrollbar_mode;
+begin
+  Result := lv_page_get_scrollbar_mode (list);
+end;
+
+function lv_list_get_scroll_propagation(list : Plv_obj) : LongBool;
+begin
+  Result := lv_page_get_scroll_propagation (list);
+end;
+
+function lv_list_get_edge_flash (list : Plv_obj) : LongBool;
+begin
+  Result := lv_page_get_edge_flash (list);
+end;
+
+function lv_list_get_anim_time (const list : Plv_obj) : Tuint16;
+begin
+  Result := lv_page_get_anim_time (list);
+end;
+
+procedure lv_checkbox_set_checked (cb : Plv_obj; checked : LongBool);
+begin
+  if checked then
+    lv_btn_set_state (cb, LV_BTN_STATE_CHECKED_RELEASED)
+  else
+    lv_btn_set_state (cb, LV_BTN_STATE_RELEASED);
+end;
+procedure lv_checkbox_set_disabled (cb : Plv_obj);
+begin
+  lv_btn_set_state (cb, LV_BTN_STATE_DISABLED);
+end;
+procedure lv_checkbox_set_state (cb : Plv_obj; state : Tlv_btn_state);
+begin
+  lv_btn_set_state (cb, state);
+end;
+function lv_checkbox_is_checked (const cb : Plv_obj) : LongBool;
+begin
+  if lv_btn_get_state (cb) = LV_BTN_STATE_RELEASED then
+    Result := false
+  else
+    Result := true;
+end;
+function lv_checkbox_is_inactive (const cb : Plv_obj) : LongBool;
+begin
+  if  lv_btn_get_state (cb) = LV_BTN_STATE_DISABLED then
+    Result := true
+  else
+    Result := false;
+end;
+function lv_checkbox_get_state (const cb : Plv_obj) : Tlv_btn_state;
+begin
+  Result := lv_btn_get_state (cb);
+end;
+
+
 end.
 
